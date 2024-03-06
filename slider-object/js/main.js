@@ -1,6 +1,7 @@
 const carouselImages = document.querySelector('.my-carousel-images');
 console.log(carouselImages);
 const thumbnails = document.querySelector('.my-thumbnails');
+console.log(thumbnails);
 const next = document.querySelector('.my-next');
 const prev = document.querySelector('.my-previous');
 const images = [
@@ -21,11 +22,13 @@ const images = [
         title: 'Chile',
         description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
     },
+
     {
         url: 'https://static1.evcdn.net/images/reduction/1583177_w-1920_h-1080_q-70_m-crop.jpg',
         title: 'Argentina',
         description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
     },
+
     {
         url: 'https://cdn.sanity.io/images/24oxpx4s/prod/ed09eff0362396772ad50ec3bfb728d332eb1c30-3200x2125.jpg?w=1600&h=1063&fit=crop',
         title: 'Colombia',
@@ -46,15 +49,22 @@ for(let key in images){
         </div>
     </div>
 `
+    thumbnails.innerHTML += `
+    <div class="my-thumbnail">
+        <img class="img-fluid" src="${images[key].url}" alt="Thumbnail of ${images[key].title} picture"> 
+    </div>
+`
 }
 
 const itemsCollection = document.getElementsByClassName('my-carousel-item');
-console.log(itemsCollection);
+const miniatureCollection = document.getElementsByClassName('my-thumbnail');
 itemsCollection[counterImg].classList.add('active');
+miniatureCollection[counterImg].classList.add('active');
 
 next.addEventListener('click', function(){
 
     itemsCollection[counterImg].classList.remove('active')
+    miniatureCollection[counterImg].classList.remove('active')
 
     counterImg++;
     
@@ -63,12 +73,14 @@ next.addEventListener('click', function(){
     }
 
     itemsCollection[counterImg].classList.add('active')
+    miniatureCollection[counterImg].classList.add('active')
 
 })
 
 prev.addEventListener('click', function(){
 
     itemsCollection[counterImg].classList.remove('active')
+    miniatureCollection[counterImg].classList.remove('active')
 
     counterImg--;
     
@@ -77,12 +89,23 @@ prev.addEventListener('click', function(){
     }
 
     itemsCollection[counterImg].classList.add('active')
-
+    miniatureCollection[counterImg].classList.add('active')
 })
 
-    // thumbnails.innerHTML += `
-    // <div class="my-thumbnail">
-    //     <img class="img-fluid" src="${images[key].url}" alt="Thumbnail of ${images[key].title} picture"> 
-    // </div>
-    // `
-// }
+let counter = 0;
+// ogni 3 secondi incremento il contatore
+const contatoreAutomatico = setInterval(()=>{
+itemsCollection[counterImg].classList.remove('active')
+miniatureCollection[counterImg].classList.remove('active')
+
+counterImg++;
+
+if(counterImg === images.length){
+counterImg = 0;
+}
+
+itemsCollection[counterImg].classList.add('active')
+miniatureCollection[counterImg].classList.add('active')
+
+
+},3000)
