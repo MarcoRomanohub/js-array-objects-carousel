@@ -1,3 +1,5 @@
+const carouselImages = document.querySelector('.my-carousel-images');
+console.log(carouselImages);
 const images = [
     {
         url: 'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg',
@@ -28,3 +30,22 @@ const images = [
     },
 ];
 
+for(let key in images){
+    const outputStr = `${key}:${images[key]}`;
+    console.log(images);
+}
+
+// for(image of images){
+//     console.log(image.description);
+// }
+
+
+carouselImages.innerHTML += `
+<div class="my-carousel-item active">
+    <img class="img-fluid" src="${images.url}" alt="${images.title} picture">
+    <div class="item-description px-3">
+        <h2>${images.title}</h2>
+        <p>${images.description}</p>
+    </div>
+</div>
+`
