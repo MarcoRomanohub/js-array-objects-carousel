@@ -1,5 +1,6 @@
 const carouselImages = document.querySelector('.my-carousel-images');
 console.log(carouselImages);
+const thumbnails = document.querySelector('.my-thumbnails');
 const images = [
     {
         url: 'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg',
@@ -30,22 +31,28 @@ const images = [
     },
 ];
 
+let counterImg = 0;
+
 for(let key in images){
-    const outputStr = `${key}:${images[key]}`;
-    console.log(images);
+
+    carouselImages.innerHTML += `
+    <div class="my-carousel-item">
+        <img class="img-fluid" src="${images[key].url}" alt="${images[key].title} picture">
+        <div class="item-description px-3">
+            <h2>${images[key].title}</h2>
+            <p>${images[key].description}</p>
+        </div>
+    </div>
+`
 }
 
-// for(image of images){
-//     console.log(image.description);
+const itemsCollection = document.getElementsByClassName('my-carousel-item');
+console.log(itemsCollection);
+itemsCollection[counterImg].classList.add('active');
+
+    // thumbnails.innerHTML += `
+    // <div class="my-thumbnail">
+    //     <img class="img-fluid" src="${images[key].url}" alt="Thumbnail of ${images[key].title} picture"> 
+    // </div>
+    // `
 // }
-
-
-carouselImages.innerHTML += `
-<div class="my-carousel-item active">
-    <img class="img-fluid" src="${images.url}" alt="${images.title} picture">
-    <div class="item-description px-3">
-        <h2>${images.title}</h2>
-        <p>${images.description}</p>
-    </div>
-</div>
-`
