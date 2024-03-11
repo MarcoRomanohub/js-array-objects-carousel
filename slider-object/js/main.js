@@ -2,8 +2,7 @@ const carouselImages = document.querySelector('.my-carousel-images');
 console.log(carouselImages);
 const thumbnails = document.querySelector('.my-thumbnails');
 console.log(thumbnails);
-const next = document.querySelector('.my-next');
-const prev = document.querySelector('.my-previous');
+
 const images = [
     {
         url: 'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg',
@@ -60,6 +59,9 @@ const itemsCollection = document.getElementsByClassName('my-carousel-item');
 const miniatureCollection = document.getElementsByClassName('my-thumbnail');
 itemsCollection[counterImg].classList.add('active');
 miniatureCollection[counterImg].classList.add('active');
+
+const next = document.querySelector('.my-next');
+const prev = document.querySelector('.my-previous');
 
 next.addEventListener('click', function(){
 
